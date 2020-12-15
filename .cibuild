@@ -16,8 +16,8 @@ mkdir blog_page
 # clone remote repo to "blog_page"
 git clone https://${GITHUB_TOKEN}@github.com/tuananhitoct/tuananhitoct.github.io.git --branch master blog_page
 
-# build with Jekyll into "blog_page"
-bundle exec jekyll build
+npx ng run build --prod
+npm run scully
 
 # push
 cd blog_page
