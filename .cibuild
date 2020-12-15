@@ -16,11 +16,12 @@ mkdir blog_page
 # clone remote repo to "blog_page"
 git clone https://${GITHUB_TOKEN}@github.com/tuananhitoct/tuananhitoct.github.io.git --branch master blog_page
 
-npx ng run build --prod
-npm run scully
-
 # push
 cd blog_page
+
+ng run build --prod
+npm run scully
+
 git config user.email "tuananhit.oct@gmail.com"
 git config user.name "Tuan Anh"
 git add --all
