@@ -1,0 +1,28 @@
+#!/bin/bash
+
+# skip if build is triggered by pull request
+if [ $TRAVIS_PULL_REQUEST == "true" ]; then
+  echo "this is PR, exiting"
+  exit 0
+fi
+
+# enable error reporting to the console
+set -e
+
+# cleanup "blog_page"
+rm -rf blog_page
+mkdir blog_page
+
+# clone remote repo to "blog_page"
+git clone https://${GITHUB_TOKEN}@github.com/tuananhitoct/tuananhitoct.github.io.git --branch master blog_page
+
+# build with Jekyll into "blog_page"
+bundle exec jekyll build
+
+# push
+cd blog_page
+git config user.email "tuananhit.oct@gmail.com"
+git config user.name "Tuan Anh"
+git add --all
+git commit -a -m "Travis #$TRAVIS_BUILD_NUMBER"
+git push --force origin master
