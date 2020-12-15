@@ -5,7 +5,8 @@ branches:
   only:
   - develop
 before_script:
- - chmod +x ./.cibuild
+  - npm install -g @angular/cli
+  - chmod +x ./.cibuild
 script: ./.cibuild
 exclude: [node_modules]
 sudo: false
